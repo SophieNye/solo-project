@@ -39,7 +39,7 @@ module.exports = {
         publicPath: "http://localhost:8080/dist/",
         hotOnly: true,
         proxy: {
-            '/goodreads': 'http://localhost:3000'
+            '/auth/goodreads': 'http://localhost:3000'
         }
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],

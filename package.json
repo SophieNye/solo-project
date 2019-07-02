@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "virtual bookshelf",
   "main": "index.js",
+  "typings": "dist/index",
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
@@ -24,11 +25,12 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "@zalando/oauth2-client-js": "0.0.18",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "goodreads-api-node": "0.0.10",
     "nodemon": "^1.19.1",
-    "passport-goodreads": "^1.0.0",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

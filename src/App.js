@@ -20,6 +20,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Book hello={this.state.hello} />
+                <button href='./auth/goodreads'>Login with Goodreads</button>
             </div>
         );
     }
