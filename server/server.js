@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -9,23 +10,40 @@ const myCredentials = {
     secret: process.env.GOODREADS_SECRET
 };
 
-const callbackURL = './goodreads'
 
-const gr = goodreads(myCredentials, callbackURL);
 
 app.use(express.static(path.join(__dirname, '../public/index.html')));
 
 const hello = [{ hello: 'world' }]
 console.log(hello)
+const gr = goodreads(myCredentials)
+const callbackURL = 'http://localhost:3000/goodreads'
 
-app.get('/auth/goodreads', (req, res, next) => {
+// app.get('/myshelf', (req, res, next) => {
+//     gr.getUsersShelves('98770925')
+//         .then(console.log);
+// })
+
+app.get('/auth/goodreads', async (req, res, next) => {
     console.log('test')
-    gr.getRequestToken()
-        .then(url => {/* redirect your user to this url to ask for permission */ })
+    gr.initOAuth(callbackURL)
+    await gr.getRequestToken()
+        .then(url => { res.redirect(url) })
+})
 
-    gr.getAccessToken()
-        .then(() => { /* you can now make authenticated requests */ });
-    // res.send(hello)
+app.get('/goodreads', async (req, res, next) => {
+    console.log('req.body ', req.body)
+    console.log('req.params ', req.params)
+    const oauthtoken = req.params.oauth_token;
+    console.log('oauthtoken ', oauthtoken);
+    const authorize = req.params.authorize
+    console.log('authorize ', authorize);
+    await gr.getAccessToken()
+        .then(() => {
+            gr.getBooksOnUserShelf('98770925', 'read')
+                .then((result) => res.send(result.books.book[0]))
+            // .then(res.redirect(path.join('./goodreads.html')))
+        });
 })
 
 
