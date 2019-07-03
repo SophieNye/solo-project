@@ -20,25 +20,27 @@ class App extends Component {
         this.state = {
             hello: 'Bookshelf'
         };
-        this.renderBooks = this.renderBooks.bind(this);
+        // this.renderBooks = this.renderBooks.bind(this);
     }
 
-    renderBooks() {
-        fetch('./auth/goodreads')
-            .then(result => console.log(result))
-    }
+    // renderBooks(e) {
+    //     e.preventDefault()
+    //     fetch('./auth/goodreads', { method: 'GET', host: 'http://localhost:8080/', headers: { accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3', 'upgrade-insecure-requests': '1' } })
+    //         .then(result => result.json())
+    //         .then(json => (console.log(json)))
+    // }
 
     render() {
         return (
-            { bookDataReceived &&
-            <GoodreadsPage books={this.props.books} />
-            }
+            // { bookDataReceived &&
+            // <GoodreadsPage books={this.props.books} />
+            // }
             <div className="App">
-    <Book hello={this.state.hello} />
-    <form method="get" action="./auth/goodreads">
-        <button type="submit">Login with Goodreads</button>
-    </form>
-</div>
+                <Book hello={this.state.hello} />
+                <form method="get" action="./auth/goodreads">
+                    <button type="submit">Login with Goodreads</button>
+                </form>
+            </div>
         );
     }
 }

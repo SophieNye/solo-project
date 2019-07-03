@@ -8,7 +8,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 loader: "babel-loader",
                 options: { presets: ["@babel/env"] }
             },
@@ -38,9 +38,10 @@ module.exports = {
         port: 8080,
         publicPath: "http://localhost:8080/dist/",
         hotOnly: true,
-        proxy: {
-            '/auth/goodreads': 'http://localhost:3000'
-        }
+        proxy: [{
+            context: ['/auth/goodreads', '/goodreads'],
+            target: 'http://localhost:3000',
+        }]
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     node: {
