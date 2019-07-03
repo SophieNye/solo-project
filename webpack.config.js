@@ -2,7 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        main: "./src/index.js",
+        bookshelf: "./src/bookshelf.js"
+    },
     mode: 'development',
     module: {
         rules: [

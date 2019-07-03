@@ -2,23 +2,26 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import "./App.css";
 import Book from './Book';
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, Link, BrowserRouter as Router, Redirect } from "react-router-dom";
 
-const Login = () => {
-    <div>
+// const Login = () => {
+//     <div>
+//         <Book />
+//         <form method="get" action="./auth/goodreads">
+//             <button type="submit">Login with Goodreads</button>
+//         </form>
+//     </div>
+// }
 
-    </div>
-}
+// const GoodreadsPage = (props) => {
+//     return (
+//         <div>
+//             <ul>
 
-const GoodreadsPage = (props) => {
-    return (
-        <div>
-            <ul>
-
-            </ul>
-        </div>
-    )
-}
+//             </ul>
+//         </div>
+//     )
+// }
 
 class App extends Component {
 
@@ -31,12 +34,12 @@ class App extends Component {
         // this.renderBooks = this.renderBooks.bind(this);
     }
 
-    // renderBooks(e) {
-    //     e.preventDefault()
-    //     fetch('./auth/goodreads', { method: 'GET', host: 'http://localhost:8080/', headers: { accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3', 'upgrade-insecure-requests': '1' } })
-    //         .then(result => result.json())
-    //         .then(json => (console.log(json)))
-    // }
+    renderBooks(e) {
+        e.preventDefault()
+        fetch('./getmybooks')
+            .then(result => result.json())
+            .then(json => (console.log(json)))
+    }
 
     render() {
         return (
