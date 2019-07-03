@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import "./App.css";
 import Book from './Book';
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+
+const Login = () => {
+    <div>
+
+    </div>
+}
 
 const GoodreadsPage = (props) => {
     return (
@@ -18,7 +25,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hello: 'Bookshelf'
+            hello: 'Bookshelf',
+            books: []
         };
         // this.renderBooks = this.renderBooks.bind(this);
     }

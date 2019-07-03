@@ -39,7 +39,7 @@ module.exports = {
         publicPath: "http://localhost:8080/dist/",
         hotOnly: true,
         proxy: [{
-            context: ['/auth/goodreads', '/goodreads'],
+            context: ['/auth/goodreads', '/goodreads', '/getmybooks'],
             target: 'http://localhost:3000',
         }]
     },

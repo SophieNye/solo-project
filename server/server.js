@@ -42,18 +42,6 @@ app.get('/auth/goodreads', async (req, res, next) => {
     gr.initOAuth(callbackURL)
     await gr.getRequestToken()
         .then(url => { res.redirect(url) })
-        // .then((result) => {
-        //     console.log('result ', result)
-        //     let bookArr = JSON.parse(result)
-        //     console.log('bookArr ', bookArr)
-        //     for (let i = 0; i < bookArr.length; i++) {
-        //         const book = new Book({ info: bookArr[i] })
-        //         book.save(function (err) {
-        //             if (err) res.send('err in saving book to DB ', err, i);
-        //         })
-        //     }
-        //     res.set('content-type: text/html; charset=UTF-8').status(200).sendFile(path.join(__dirname, './public/bookshelf.html'));
-        // })
         .catch((err) => console.log('/auth/goodreads catch err ', err))
 })
 
@@ -77,6 +65,13 @@ app.get('/goodreads', async (req, res, next) => {
         .catch((err) => console.log('err in goodreads catch ', err))
     // .then(res.redirect(path.join('./goodreads.html')))
 });
+
+app.get('/getmybooks', (req, res, next) => {
+    console.log('get my books ')
+    books.findOne({}, function (err, result) {
+        res.status(200).send(result)
+    })
+})
 
 
 
