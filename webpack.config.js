@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         main: "./src/index.js",
         bookshelf: "./src/bookshelf.js",
-        vendor: ['react']
+        vendors: ['react']
     },
     mode: 'development',
     module: {
@@ -46,7 +46,7 @@ module.exports = {
             context: ['/auth/goodreads', '/goodreads', '/getmybooks'],
             target: 'http://localhost:3000',
         }],
-        historyApiFallback: true
+        historyApiFallback: true //for react router
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     node: {
