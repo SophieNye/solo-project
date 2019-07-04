@@ -4,7 +4,8 @@ const webpack = require("webpack");
 module.exports = {
     entry: {
         main: "./src/index.js",
-        bookshelf: "./src/bookshelf.js"
+        bookshelf: "./src/bookshelf.js",
+        vendor: ['react']
     },
     mode: 'development',
     module: {
@@ -44,7 +45,8 @@ module.exports = {
         proxy: [{
             context: ['/auth/goodreads', '/goodreads', '/getmybooks'],
             target: 'http://localhost:3000',
-        }]
+        }],
+        historyApiFallback: true
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     node: {
