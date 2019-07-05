@@ -8,7 +8,7 @@ const path = require('path');
 const goodreads = require('goodreads-api-node');
 const cors = require('cors')
 const Book = require('.././BookModel')
-mongoose.connect('mongodb://sophie:Hg9BL5JSfNzVRag@ds147207.mlab.com:47207/heroku_1zsz2rfj');
+const db = mongoose.connect('mongodb://sophie:Hg9BL5JSfNzVRag@ds147207.mlab.com:47207/heroku_1zsz2rfj');
 mongoose.connection.once('open', () => {
     console.log('Connected to Database');
 });
@@ -29,12 +29,6 @@ console.log(hello)
 const gr = goodreads(myCredentials)
 const callbackURL = 'http://localhost:8080/goodreads'
 
-
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 let proxy = 'https://cors-anywhere.herokuapp.com/'
 
 app.get('/auth/goodreads', async (req, res, next) => {
@@ -51,7 +45,7 @@ app.get('/goodreads', async (req, res, next) => {
         .then(() => {
             gr.getBooksOnUserShelf('98770925', 'read', { per_page: 200 })
                 .then((result) => {
-                    console.log('result.books.book ', result.books.book[0])
+                    // console.log('result.books.book ', result.books.book[0])
                     mongoose.connection.db.dropCollection('books', (err, result) => {
                         if (err) console.log('drop collection err ', err)
                     })
@@ -59,16 +53,18 @@ app.get('/goodreads', async (req, res, next) => {
                     book.save(function (err) {
                         if (err) res.send('err in saving book to DB ', err, i);
                     })
-                    res.set('content-type: text/html; charset=UTF-8').status(200).sendFile(path.join(__dirname, '.././public/bookshelf.html'));
+                    res.set('content-type: text/html; charset=UTF-8').status(200).redirect('/bookshelf');
                 })
         })
         .catch((err) => console.log('err in goodreads catch ', err))
-    // .then(res.redirect(path.join('./goodreads.html')))
 });
 
 app.get('/getmybooks', (req, res, next) => {
     console.log('get my books ')
-    books.findOne({}, function (err, result) {
+    Book.findOne({}, function (err, result) {
+        if (err) console.log('err getting books ', err)
+        // console.log(result)
+        res.set('Content-Type', 'application/json')
         res.status(200).send(result)
     })
 })

@@ -5,9 +5,11 @@ class Book extends Component {
 
 
     render(props) {
+        console.log('book props ', props)
         return (
             <div>
-                {this.props.hello}
+                <img src={this.props.cover}></img>
+                <p>{this.props.title}</p>
             </div>
         )
     }

@@ -3,9 +3,9 @@ const webpack = require("webpack");
 
 module.exports = {
     entry: {
-        main: "./src/index.js",
-        bookshelf: "./src/bookshelf.js",
-        vendors: ['react']
+        main: "./src/index.js"
+        // bookshelf: "./src/bookshelf.js"
+        // vendors: ['react']
     },
     mode: 'development',
     module: {

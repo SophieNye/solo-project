@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import "./App.css";
-import Book from './Book';
+import Shelf from './Shelf';
 import { Route, Link, BrowserRouter as Router, Redirect } from "react-router-dom";
+import Login from './Login'
+
 
 
 class App extends Component {
@@ -24,15 +26,16 @@ class App extends Component {
     }
 
     render() {
+
         return (
-            <div className="App">
-                <Book hello={this.state.hello} />
-                <form method="get" action="./auth/goodreads">
-                    <button type="submit">Login with Goodreads</button>
-                </form>
-            </div>
+            <Router>
+                <Route exact path="/" component={Login} />
+                <Route path="/bookshelf" component={Shelf} />
+            </Router>
         );
     }
 }
+
+
 
 export default App;
