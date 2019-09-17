@@ -1,3 +1,3 @@
 ## Bookshelf
 
-__A virtual bookshelf to organize ebooks found on your Goodreads shelf.__
+A virtual bookshelf to organize ebooks found on your Goodreads shelf.
