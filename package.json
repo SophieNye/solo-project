@@ -22,7 +22,7 @@
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
     "@zalando/oauth2-client-js": "0.0.18",
