@@ -8,9 +8,9 @@ const path = require('path');
 const goodreads = require('goodreads-api-node');
 const cors = require('cors')
 const Book = require('.././BookModel')
-const db = mongoose.connect('mongodb://sophie:Hg9BL5JSfNzVRag@ds147207.mlab.com:47207/heroku_1zsz2rfj');
-mongoose.connection.once('open', () => {
-    console.log('Connected to Database');
+const db = mongoose.connect('mongodb://sophie:Hg9BL5JSfNzVRag@ds147207.mlab.com:47207/heroku_1zsz2rfj', (err, client) => {
+    if (err) console.log('err in mongoose connect', err)
+    else if (client) console.log('connected to database')
 });
 
 const myCredentials = {
