@@ -15,4 +15,16 @@ describe('Route integration', () => {
         });
       });
     });
+
+    describe('/auth/goodreads', () => {
+        describe('GET', () => {
+            it('responds with 200 status and text/html content type', () => {
+                return request(server)
+                    .get('/auth/goodreads')
+                    .expect('Content-Type', /text\/html/)
+                    .expect(200)
+            })
+        })
+    })
+
 });
