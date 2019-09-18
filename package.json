@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development npm start & webpack-dev-server --open"
+    "dev": "NODE_ENV=development npm start & webpack-dev-server --open",
+    "test": "jest --verbose"
   },
   "author": "Sophie Nye",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
     "file-loader": "^4.0.0",
+    "jest": "^24.9.0",
     "style-loader": "^0.23.0",
     "supertest": "^4.0.2",
     "webpack": "^4.19.1",
