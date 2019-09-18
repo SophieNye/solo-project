@@ -33,7 +33,9 @@ let proxy = 'https://cors-anywhere.herokuapp.com/'
 
 app.get('/auth/goodreads', async (req, res, next) => {
     console.log('test')
+    //URL to redirct after OAuth
     gr.initOAuth(callbackURL)
+    //request Token
     await gr.getRequestToken()
         .then(url => { res.redirect(url) })
         .catch((err) => console.log('/auth/goodreads catch err ', err))
@@ -41,24 +43,30 @@ app.get('/auth/goodreads', async (req, res, next) => {
 
 app.get('/goodreads', async (req, res, next) => {
     console.log('at goodreads')
+    //get token from req
     await gr.getAccessToken()
         .then(() => {
+            //request books on GR read shelf
             gr.getBooksOnUserShelf('98770925', 'read', { per_page: 200 })
                 .then((result) => {
                     // console.log('result.books.book ', result.books.book[0])
+                    //delete exiting books to start fresh
                     mongoose.connection.db.dropCollection('books', (err, result) => {
                         if (err) console.log('drop collection err ', err)
                     })
                     const book = new Book({ bookArray: result.books.book })
+                    //insert books JSON object into MongoDB
                     book.save(function (err) {
                         if (err) res.send('err in saving book to DB ', err, i);
                     })
+                    //redirect to bookshelf endpoint
                     res.set('content-type: text/html; charset=UTF-8').status(200).redirect('/bookshelf');
                 })
         })
         .catch((err) => console.log('err in goodreads catch ', err))
 });
 
+//retrieve books from mongodb
 app.get('/getmybooks', (req, res, next) => {
     console.log('get my books ')
     Book.findOne({}, function (err, result) {
