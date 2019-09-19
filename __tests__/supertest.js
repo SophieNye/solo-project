@@ -28,11 +28,11 @@ describe('Route integration', () => {
     })
     describe('/getmybooks', () => {
         describe('GET', ()=> {
-            it('responds with array', () => {
+            it('response is an array', () => {
                 return request(server)
                     .get('/getmybooks')
                     .then((response) => {
-                        expect(response.body)
+                        expect(JSON.parse(response.body)).toBeInstanceOf(Array)
                     })
                     .expect('Content-Type', /application\/json/)
                     .expect(200)
