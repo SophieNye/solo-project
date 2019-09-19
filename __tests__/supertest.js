@@ -25,6 +25,12 @@ describe('Route integration', () => {
                     .expect(200)
             })
         })
+        describe('GET', ()= >{
+            it('responds with array', () => {
+                return request(server)
+                    .get('/auth/goodreads')
+            })
+        })
     })
 
 });
