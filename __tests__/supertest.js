@@ -25,10 +25,17 @@ describe('Route integration', () => {
                     .expect(200)
             })
         })
-        describe('GET', ()= >{
+    })
+    describe('/getmybooks', () => {
+        describe('GET', ()=> {
             it('responds with array', () => {
                 return request(server)
-                    .get('/auth/goodreads')
+                    .get('/getmybooks')
+                    .then((response) => {
+                        expect(response.body)
+                    })
+                    .expect('Content-Type', /application\/json/)
+                    .expect(200)
             })
         })
     })
