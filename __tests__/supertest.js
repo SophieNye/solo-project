@@ -34,8 +34,6 @@ describe('Route integration', () => {
                     .then((response) => {
                         expect(JSON.parse(response.body)).toBeInstanceOf(Array)
                     })
-                    .expect('Content-Type', /application\/json/)
-                    .expect(200)
             })
         })
     })
